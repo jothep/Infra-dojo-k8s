@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook
+  namespace: argocd
+spec:
+  project: tools
+  source:
+    repoURL: https://github.com/argoproj/argocd-example-apps.git
+    targetRevision: master
+    path: helm-guestbook
+    helm:
+      releaseName: guestbook
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: guestbook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true

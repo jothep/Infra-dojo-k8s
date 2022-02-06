@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: tools
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: tools services
+  sourceRepos:
+    - https://github.com/jothep/Infra-dojo-k8s.git
+    - '*'
+  destinations:
+    - namespace: sealedsecrets
+      server: https://kubernetes.default.svc
+    - namespace: '*'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
