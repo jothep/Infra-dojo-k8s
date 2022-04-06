@@ -1,0 +1,23 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: nginx
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - 'gloo.example.com'
+    routes:
+      - matchers:
+          - exact: /nginx
+        options:
+          prefixRewrite: /
+        routeAction:
+          single:
+            upstream:
+              name: default-nginx-80
+              namespace: gloo-system
+  sslConfig:
+    secretRef:
+      name: my-tls-secret
+      namespace: gloo-system

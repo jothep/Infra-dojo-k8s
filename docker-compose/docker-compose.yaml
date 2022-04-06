@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      AUTH_TYPE: OAUTH2
+      KAFKA_CLUSTERS_0_NAME: staging1
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS:
+      KAFKA_CLUSTERS_0_ZOOKEEPER:
+      KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL: SSL
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTH0_CLIENTID:
+      SERVER_FORWARDHEADERSSTRATEGY: native
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - /Users/zhuxiang/try/colima/cert2:/opt/cert
+
+networks:
+  default:
+    external: true
+    name: kafka_default

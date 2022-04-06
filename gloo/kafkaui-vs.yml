@@ -1,0 +1,19 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: kafkaui
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - '*'
+    routes:
+      - matchers:
+          - exact: /kafkaui
+        options:
+          prefixRewrite: /
+        routeAction:
+          single:
+            upstream:
+              name: kafkaui-kafkaui-80
+              namespace: gloo-system

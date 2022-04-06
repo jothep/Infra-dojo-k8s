@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kafkaui-ingress
+  namespace: kafkaui
+  annotations:
+    kubernetes.io/ingress.class: gloo
+spec:
+  tls:
+    - hosts:
+        - gloo.example.com
+      secretName: my-tls-secret
+  rules:
+    - host: gloo.example.com
+      http:
+        paths:
+          - path: /.*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: kafkaui
+                port:
+                  number: 80

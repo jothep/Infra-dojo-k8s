@@ -1,0 +1,7 @@
+apiVersion: v2
+appVersion: 0.0.3
+description: A Helm chart for kafka-UI
+icon: https://github.com/provectus/kafka-ui/raw/master/images/kafka-ui-logo.png
+name: kafkaui
+type: application
+version: 0.0.3
