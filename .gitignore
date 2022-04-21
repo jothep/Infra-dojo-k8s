@@ -17,3 +17,4 @@
 .DS_Store
 gloo/*.cert
 gloo/*.key
+.idea/*
