@@ -237,6 +237,9 @@ serviceAccount:
   ## If not set and create is true, a name is generated using the sealed-secrets.fullname template
   ##
   name: ""
+  ## Automount API credentials for a service account.
+  ##
+  # automountServiceAccountToken: false
 ## RBAC configuration
 ##
 rbac:
