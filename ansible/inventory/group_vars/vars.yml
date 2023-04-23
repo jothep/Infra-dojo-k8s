@@ -1,0 +1,6 @@
+---
+user: vagrant
+home_path: /home/vagrant
+
+docker_compose_path: /usr/local/bin/docker-compose
+docker_compose_url: 'https://github.com/docker/compose/releases/download/1.28.5/docker-compose-Linux-x86_64'

@@ -1,0 +1,15 @@
+---
+- name: "check weather docker-compose file exist"
+  stat: path=/usr/local/bin/{{ item.src }}
+  with_items:
+    - { src: docker-compose }
+  register: has_compose
+  ignore_errors: True
+
+- name: Install Docker Compose (if configured).
+  become: yes
+  get_url:
+    url: "{{ docker_compose_url }}"
+    dest: "{{ docker_compose_path }}"
+    mode: 0755
+  when: (has_compose.results[0].stat.exists == false)

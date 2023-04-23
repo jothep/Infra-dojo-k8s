@@ -1,0 +1,33 @@
+---
+
+- name: "apt install packages "
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+  become: true
+  become_method: sudo 
+
+- name: "add repo key"
+  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+
+- name: "add repo"
+  shell: 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
+  become: true
+  become_method: sudo
+
+- name: "install docker-ce"
+  apt:
+    name: docker-ce
+    update_cache: yes
+  become: true
+  become_method: sudo
+
+- name: "usermod"
+  command: usermod -aG docker vagrant
+  become: true
+  become_method: sudo

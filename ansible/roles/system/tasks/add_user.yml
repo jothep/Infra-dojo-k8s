@@ -1,0 +1,20 @@
+- name: Make sure we have a 'xzhu' group
+  group:
+    name: xzhu
+    state: present
+
+- name: Allow 'xzhu' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%xzhu'
+    line: '%xzhu ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: Add sudoers users to wheel group
+  user: name="{{ user1 }}" groups=xzhu append=yes state=present createhome=yes
+
+- name: Set up authorized keys for the deployer user
+  authorized_key: user="{{ user1 }}" key="{{item}}"
+  with_file:
+    - /home/xzhu/.ssh/id_rsa.pub
