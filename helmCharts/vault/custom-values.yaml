@@ -1,0 +1,20 @@
+server:
+  standalone:
+    enabled: true
+    config: |
+      ui = true
+
+      listener "tcp" {
+        tls_disable = 1
+        address = "[::]:8200"
+        cluster_address = "[::]:8201"
+      }
+      storage "azure" {
+        accountName = "vaultsa1679003"
+        accountKey  = "5zRKfRdy0fWemoeYO8Bs9gdyEH5HBt+EGl28s79Ed0qktDbplUXjVxklBjQvJX9FUaNCgK/IpTYL+AStYJ6OSQ=="
+        container   = "vaultsc1679003"
+        environment = "AzurePublicCloud"
+      }
+ui:
+  enabled: true
+  serviceType: LoadBalancer
