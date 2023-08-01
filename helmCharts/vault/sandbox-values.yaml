@@ -10,9 +10,9 @@ server:
         cluster_address = "[::]:8201"
       }
       storage "azure" {
-        accountName = "AC_NAME"
-        accountKey  = "AC_KEY"
-        container   = "AC_CONTAINER"
+        accountName = "ABC12"
+        accountKey  = "DELF"
+        container   = "sstvaultscsandbox"
         environment = "AzurePublicCloud"
       }
 

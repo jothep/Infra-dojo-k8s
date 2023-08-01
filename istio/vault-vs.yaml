@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha1
+kind: VirtualService
+metadata:
+  name: vault-route
+  namespace: msrs
+spec:
+  hosts:
+    - "*.cloud"
+  gateways:
+    - msrs-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /static
+      name: vault-route
+      rewrite:
+        uri: /srsplus/api/vault/
+      route:
+        - destination:
+            host: vault.msrs.svc.cluster.local
+            port:
+              number: 80
+          
