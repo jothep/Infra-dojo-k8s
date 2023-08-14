@@ -11,7 +11,7 @@ nameOverride: ""
 fullnameOverride: ""
 ## @param namespace Namespace where to deploy the Sealed Secrets controller
 ##
-namespace: ""
+namespace: "kube-system"
 ## @param extraDeploy [array] Array of extra objects to deploy with the release
 ##
 extraDeploy: []
@@ -27,8 +27,8 @@ extraDeploy: []
 ## @param image.pullSecrets [array]  Sealed Secrets image pull secrets
 ##
 image:
-  registry: quay.io
-  repository: bitnami/sealed-secrets-controller
+  registry: bitnami
+  repository: sealed-secrets-controller
   tag: v0.17.3
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'

@@ -22,9 +22,9 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.image.pullSecret }}
       {{- end }}
-      { { - if not .Values.serviceAccount.automountServiceAccountToken } }
-      automountServiceAccountToken: { { default "false" .Values.serviceAccount.automountServiceAccountToken } }
-      { { - end } }
+      {{- if not .Values.serviceAccount.automountServiceAccountToken }}
+      automountServiceAccountToken: {{ default "false" .Values.serviceAccount.automountServiceAccountToken }}
+      {{- end }}
       {{- if .Values.affinity }}
       affinity: {{- toYaml .Values.affinity | nindent 8 }}
       {{- end }}
