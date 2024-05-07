@@ -1,0 +1,26 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: nginx-vs
+  namespace: abtest
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - my-gateway
+  http:
+    - match:
+        - headers:
+            version:
+              exact: "2.0"
+      route:
+        - destination:
+            host: nginx-v2
+            port:
+              number: 80
+    - route:
+        - destination:
+            host: nginx-v1
+            port:
+              number: 80
