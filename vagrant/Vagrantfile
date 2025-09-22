@@ -1,0 +1,35 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # 1. Specify the virtual machine image (Box)
+  config.vm.box = "bento/ubuntu-22.04"
+
+  # 2. Configure VM hardware and Provider
+  config.vm.provider "vmware_desktop" do |vmware|
+    # <-- Modification: Memory increased to 16GB (16 * 1024) -->
+    vmware.memory = "16384"
+    # <-- Modification: Increased the number of CPU cores to 4 -->
+    vmware.cpus = "4"
+  end
+
+  # 3. Configure the network
+  config.vm.network "private_network", ip: "192.168.56.110"
+
+  # 4. New: Configuring a Shared Directory
+  # Map the "./data" directory on the host to the "/vagrant_data" directory within the VM.
+  config.vm.synced_folder "./data", "/vagrant_data"
+  
+  # 5. Automated configuration script
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "Updating package lists with apt..."
+    # First, update the package list
+    sudo apt-get update -y
+    
+    echo "Upgrading installed packages..."
+    # Then, upgrade the actual packages. DEBIAN_FRONTEND=noninteractive prevents interactive prompts.
+    sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+    
+    echo "VM is ready!"
+  SHELL
+end

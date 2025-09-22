@@ -1,0 +1,20 @@
+# Vagrant-specific files
+.vagrant/
+*.box
+
+# VMware-specific files
+/.idea/
+*.nvram
+*.vmdk
+*.vmsd
+*.vmx
+*.vmxf
+*.log
+vmware.log
+*.vmem
+
+# Shared data directory (Uncomment if you don't want to commit its contents)
+# data/
+
+# macOS specific files
+.DS_Store
