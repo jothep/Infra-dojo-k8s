@@ -58,8 +58,7 @@
   debug:
   msg:
     - "======================================================================="
-    - "Docker installed successfully!"
-    - "IMPORTANT: In order for the current user '{{ ansible_user }}' to run docker commands without sudo,"
-    - "You must first **log out** of the current SSH session and then **log in** again."
-    - "(Log out and log back in for the 'docker' group changes to take effect.)"
+    - "To run docker commands without sudo in your current terminal session,"
+    - "Option 1. Log out of your current SSH session and log back in."
+    - "Option 2. Run the following command to enter a new subshell with new permissions: `newgrp docker`"
     - "========================================================================="

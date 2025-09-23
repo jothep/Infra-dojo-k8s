@@ -3,11 +3,7 @@
   #gather_facts: no
   roles:
   #- system
-  #- docker-compose
   - docker
+  #- docker-compose
+  - k3s
   #- golang
-  #tags:
-  #- system
-  #vars_files:
-  #  - "{{ inventory_dir }}/group_vars/vars.yml"
-
