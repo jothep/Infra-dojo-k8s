@@ -56,9 +56,9 @@
 
 - name: "Print a reminder message about re-login"
   debug:
-  msg:
-    - "======================================================================="
-    - "To run docker commands without sudo in your current terminal session,"
-    - "Option 1. Log out of your current SSH session and log back in."
-    - "Option 2. Run the following command to enter a new subshell with new permissions: `newgrp docker`"
-    - "========================================================================="
+    msg:
+      - "======================================================================="
+      - "To run docker commands without sudo in your current terminal session,"
+      - "Option 1. Log out of your current SSH session and log back in."
+      - "Option 2. Run the following command to enter a new subshell with new permissions: `newgrp docker`"
+      - "========================================================================="
