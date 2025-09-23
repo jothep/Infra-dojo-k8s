@@ -11,10 +11,10 @@
     line: '%xzhu ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
 
-- name: Add sudoers users to wheel group
+- name: Add user '{{ user1 }}' to xzhu group
   user: name="{{ user1 }}" groups=xzhu append=yes state=present createhome=yes
 
 - name: Set up authorized keys for the deployer user
-  authorized_key: user="{{ user1 }}" key="{{item}}"
-  with_file:
-    - /home/xzhu/.ssh/id_rsa.pub
+  authorized_key: 
+    user: "{{ user1 }}" 
+    key: "{{ user1_ssh_pub_key }}"

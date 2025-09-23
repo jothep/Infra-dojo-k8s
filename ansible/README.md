@@ -1,10 +1,17 @@
-#Environment prepare
+# Environment prepare
 Vagrant host for remote host
 
-Setup no-password access vagrant from localhost, by add id_rsa.pub to vagrant's ~/.ssh/authorized_keys
+# Install ansible on ubuntu
+./install-ansible-ubt.sh
 
-#Commands
+# Setup password-free access on localhost
+./setup-ssh-access.sh
+
+# Setup password-free access on remote machine, need user and password
+./setup-ssh-access.sh <user> <host>
+
+# Commands
 ansible-playbook -i inventory/hosts ansible.yml -vv
 
-#Create new playbook repo
+# Create new playbook repo
 ./initapp.sh $PlaybookName

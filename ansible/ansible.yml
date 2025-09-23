@@ -2,12 +2,12 @@
 - hosts: ansible
   #gather_facts: no
   roles:
-  - system
+  #- system
   #- docker-compose
-  #- docker
-  #- sysdepend
+  - docker
+  #- golang
   #tags:
   #- system
-  vars_files:
-    - "{{ inventory_dir }}/group_vars/vars.yml"
+  #vars_files:
+  #  - "{{ inventory_dir }}/group_vars/vars.yml"
 

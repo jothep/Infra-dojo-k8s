@@ -1,0 +1,13 @@
+---
+- name: "add repo"
+  apt_repository:
+    repo: ppa:longsleep/golang-backports
+  become: true
+  become_method: sudo
+
+- name: "install golang"
+  apt:
+    name: golang-go
+    update_cache: yes
+  become: true
+  become_method: sudo
