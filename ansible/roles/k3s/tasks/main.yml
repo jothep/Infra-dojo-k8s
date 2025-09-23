@@ -60,6 +60,15 @@
     mode: '0600'
   become: true
 
+- name: Verify K3s cluster is running and ready
+  command: k3s kubectl get nodes
+  register: cluster_status
+  until: "'Ready' in cluster_status.stdout"
+  retries: 10
+  delay: 15
+  become: false
+  changed_when: false
+
 - name: Print a completion message
   debug:
     msg:
